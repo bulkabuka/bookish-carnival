@@ -8,7 +8,7 @@ import numerical
 def input_matrix(rows, cols):
     matrix = []
     for i in range(rows):
-        row = list(map(float, input(f"Введите строку {i + 1} (разделяйте значения пробелом): ").split()))
+        row = list(map(float, input(f"Введите строку {i + 1}: ").split()))
         if len(row) != cols:
             print("Неправильный набор значений. Выход.")
             sys.exit(1)
@@ -31,30 +31,30 @@ def main():
     max_steps = 20
     tolerance = 1e-6
 
-    print("Введите матрицу:")
+    print("\nМатрица\n------")
     matrix = input_matrix(rows, cols)
 
-    print("Введите вектор:")
+    print("\nВектор\n------")
     vector = input_vector(rows)
 
     table = PrettyTable()
     for i in range(rows):
         table.add_row(matrix[i])
 
-    print("Введенная матрица:")
+    print("\nВведенная матрица:")
     print(table)
 
     table = PrettyTable(["Вектор"])
     for value in vector:
         table.add_row([value])
 
-    print("Введенный вектор:")
+    print("\nВведенный вектор:")
     print(table)
 
     result = numerical.seidel(matrix, vector, approximation, max_steps, tolerance)
     result2 = numerical.jacobi(matrix, vector, approximation, max_steps, tolerance)
-    print("Решение методом Зейделя:", result)
-    print("Решение методом Итераций:", result2)
+    print("\nРешение методом Зейделя:", result)
+    print("\nРешение методом Итераций:", result2)
 
 
 if __name__ == "__main__":
